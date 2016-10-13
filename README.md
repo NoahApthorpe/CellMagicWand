@@ -37,8 +37,8 @@ All `cell_magic_wand` functions return a binary mask that is the same size as th
 `cell_magic_wand_single_point` also returns an array of points that are on the edge of the detected cell
 
 ## Tips
-Even with multi-seed sampling, the `center` argument still considerably affects cell magic wand tool accuracy
+Even with multi-seed sampling, the `center` argument still considerably affects cell magic wand tool accuracy. 
 
-If your image has a lot of contrast variability, preprocessing it with a median filter can improve cell magic wand tool results.  The easiest way is to use the `median_filter` function from `scipy.ndimage.filters`
+If your image has a lot of contrast variability, preprocessing it with a median filter can improve cell magic wand tool results.  The easiest way is to use the `median_filter` function from `scipy.ndimage.filters`.
 
 
