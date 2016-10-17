@@ -22,11 +22,11 @@ There are 3 primary functions in `cell_magic_wand.py`, all of which have the sam
 
 * `max_radius` The maximum distance from the seed point the edge detection algorithm will search.  Decreasing `max_radius` helps keep the tool from circling multiple cells.
 
-* `roughness` Controls the roughness of the edge of the detected ROI.  Analogous to the roughness parameter of the ImageJ Cell Magic Wand tool but not exactly equivalent. The tool samples points at (2 * pi * max_radius * roughness) angles around the center.  Increasing `roughness` increases runtime but can result in better detection.  The default value is 2 and values [1,10] are reasonable. 
+* `roughness` Controls the roughness of the edge of the detected ROI.  Analogous to the roughness parameter of the ImageJ Cell Magic Wand tool but not exactly equivalent. The tool samples points at `2 * pi * max_radius * roughness` angles around the center.  Increasing `roughness` increases runtime but can result in better detection.  The default value is 2 and values [1,10] are reasonable. 
 
 * `zoom_factor` Factor by which the image is upsampled prior to edge detection. In most cases, the default value of 1 is appropriate.  
 
-* `center_range` The distance to `center` of the additional 8 seed points used in the robust `cell_magic_wand` and `cell_magic_wand_3d` functions.  The default 2, so for center (y,x), points (y-2,x), (y,x+2), etc. will be used. Set such that all points used will be inside and near the center of your cells.  
+* `center_range` The distance to `center` of the additional 8 seed points used in the robust `cell_magic_wand` and `cell_magic_wand_3d` functions.  The default 2, so for center `(y,x)`, points `(y-2,x)`, `(y,x+2)`, etc. will be used. Set such that all points used will be inside your cells and near the center.  
 
 * `z_step` The z stride used in `cell_magic_wand_3d`.  For an image with N z-slices, `floor(N/z_stride)` will be used. 
 
@@ -34,11 +34,11 @@ There are 3 primary functions in `cell_magic_wand.py`, all of which have the sam
 
 All `cell_magic_wand` functions return a binary mask that is the same size as the input image with 1s inside the detected cell and 0s elsewhere.
 
-`cell_magic_wand_single_point` also returns an array of points that are the edge of the detected cell
+`cell_magic_wand_single_point` also returns an array of points that are on the edge of the detected cell
 
 ## Tips
-Even with multi-seed sampling, the `center` argument still considerably affects cell magic wand tool accuracy
+Even with multi-seed sampling, the `center` argument still considerably affects cell magic wand tool accuracy. 
 
-If your image has a lot of contrast variability, preprocessing it with a median filter can improve cell magic wand tool results.  The easiest way is to use the `median_filter` function from `scipy.ndimage.filters`
+If your image has a lot of contrast variability, preprocessing it with a median filter can improve cell magic wand tool results.  The easiest way is to use the `median_filter` function from `scipy.ndimage.filters`.
 
 
